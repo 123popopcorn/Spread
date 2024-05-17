@@ -286,6 +286,19 @@
     height: 24px;
   }
   </style>
+  <script>
+    document.getElementById('myForm').onsubmit = function() {
+      google.script.run
+        .withSuccessHandler(function() {
+          window.location = 'thanks.html';
+        })
+        .withFailureHandler(function(msg) {
+          alert(msg);
+        })
+        .doPost(document.getElementById('myForm'));
+      return false; // フォームの標準的な送信を防止
+    };
+  </script>  
 </head>
 <body>
   <header style="width: 100%; position: fixed; top: 0; background-color: #1c1f21; padding: 10px 0; text-align: center;">
@@ -294,7 +307,7 @@
   <div class="formbold-main-wrapper">
     <div class="formbold-form-wrapper">
       <form 
-        action="https://script.google.com/macros/s/AKfycbxz68YwRpYKRMIIVcGWUqZfB_K264d2aaPToROy4aBIuHiGEY0zmghvwgALJLs-fUsh0Q/exec"
+        action="https://script.google.com/macros/s/AKfycbz6fUrdkyMl-6z8216x5587VgOg92evy6tgLzkqAZx3i77G9NNm8TvHaDZJWhFO-ogxhw/exec"
         method="POST"
         target="_self"
         class="c-form"
