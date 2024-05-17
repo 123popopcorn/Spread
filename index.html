@@ -287,19 +287,20 @@
   }
   </style>
   <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-      let submitted = false;
+    // ページが読み込まれた後でイベントリスナーを設定
+    window.onload = function () {
+      var submitted = false; // submittedをグローバルに設定
 
-      document.getElementById('myForm').addEventListener('submit', function () {
-        submitted = true;
-      });
+      document.getElementById('myForm').onsubmit = function () {
+        submitted = true; // フォームが送信されたときにsubmittedをtrueに設定
+      };
 
       document.getElementById('hidden_iframe').onload = function () {
         if (submitted) {
-          window.location = 'thanks.html';
+          window.location = 'thanks.html'; // submittedがtrueの場合、thanks.htmlにリダイレクト
         }
       };
-    });
+    };
   </script>
 </head>
 <body>
