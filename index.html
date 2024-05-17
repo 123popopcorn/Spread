@@ -286,6 +286,19 @@
     height: 24px;
   }
   </style>
+  <script>
+    document.getElementById('myForm').onsubmit = function() {
+      google.script.run
+        .withSuccessHandler(function() {
+          window.location = 'thanks.html';
+        })
+        .withFailureHandler(function(msg) {
+          alert(msg);
+        })
+        .doPost(document.getElementById('myForm'));
+      return false; // フォームの標準的な送信を防止
+    };
+  </script>  
 </head>
 <body>
   <header style="width: 100%; position: fixed; top: 0; background-color: #1c1f21; padding: 10px 0; text-align: center;">
@@ -294,11 +307,10 @@
   <div class="formbold-main-wrapper">
     <div class="formbold-form-wrapper">
       <form 
-        action="https://script.google.com/macros/s/AKfycbzP3QC4aQD_96XaYwlnR7X0TDJN9PseHBs7EhpITgjI1Zw0AFwp2OD5fDabQk5KUiZ7Qw/exec"
+        action="https://script.google.com/macros/s/AKfycbz-WBSUt6MM29sLkVjf-NiH6TbAejwHb0SEmHEIs3pP5q3fDgkvMrEiOCq0ubz7SWrPoQ/exec"
         method="POST"
         target="_self"
         class="c-form"
-        onsubmit="return handleSubmit(this);"
       >
         <div class="formbold-form-title">
           <h2 class="">Spread購入フォーム</h2>
@@ -352,33 +364,6 @@
         </div>
         <input type="submit" class="formbold-btn" value="購入する">
       </form>
-      <iframe name="hidden_iframe" onload="handleLoad(this)" style="display:none;"></iframe>
-      <script>
-      function handleSubmit(form) {
-        // フォーム送信をJavaScriptで制御
-        var xhr = new XMLHttpRequest();
-        xhr.open(form.method, form.action, true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function () {
-          if (xhr.responseText.trim() === '1') {
-            window.location.href = 'thanks.html'; // 成功時リダイレクト
-          } else {
-            alert('エラーが発生しました。再度お試しください。'); // 失敗時の処理
-          }
-        };
-        var formData = new FormData(form);
-        xhr.send(new URLSearchParams(formData).toString());
-        return false; // 標準のフォーム送信を阻止
-      }
-
-      function handleLoad(iframe) {
-        if (iframe.contentDocument.body.textContent.trim() === '1') {
-          window.location.href = 'thanks.html'; // 成功時リダイレクト
-        } else {
-          alert('エラーが発生しました。再度お試しください。'); // 失敗時の処理
-        }
-      }
-      </script>
     </div>
   </div>
   <div id="myModal" class="modal">
