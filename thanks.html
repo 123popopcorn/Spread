@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注文確認</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1c1f21;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            background: #2c2f33;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .container p {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+        .container .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background: linear-gradient(90deg, #FFD66C 0%, #FF664D 99%);
+            border: none;
+            border-radius: 5px;
+            color: #232323;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .container .btn:hover {
+            background: linear-gradient(90deg, #FF664D 0%, #FFD66C 99%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ご注文を<br>受け付けました</h1>
+        <p>ご注文ありがとうございます。</p>
+        <p>確認メールを送信しましたので<br>ご確認ください。</p>
+        <button class="btn" onclick="goToHomepage()">ホームページに戻る</button>
+    </div>
+    <script>
+        function goToHomepage() {
+            window.location.href = 'index.html'; // ホームページのURLに変更してください
+        }
+    </script>
+</body>
+</html>
