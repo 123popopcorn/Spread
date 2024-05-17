@@ -294,7 +294,7 @@
   <div class="formbold-main-wrapper">
     <div class="formbold-form-wrapper">
       <form 
-        action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeA2WCo_p8w9huwUXgSE1TYrBWRFzjept4wpDJ8R_Wb3W4x5A/formResponse"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSeA2WCo_p8w9huwUXgSE1TYrBWRFzjept4wpDJ8R_Wb3W4x5A/viewform"
         method="POST"
         target="hidden_iframe"
         onsubmit="submitted=true;"
@@ -351,9 +351,37 @@
         </div>
         <button class="formbold-btn">購入する</button>
       </form>
-      <script type="text/javascript">
-        let submitted = false;
-      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var form = document.querySelector('form');
+        
+          form.addEventListener('submit', function(e) {
+            e.preventDefault(); // デフォルトのフォーム送信を停止
+        
+            var formData = new FormData(form);
+            var urlEncodedData = "";
+            var urlEncodedDataPairs = [];
+            var name;
+        
+            for(name in formData) {
+              urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(formData[name]));
+            }
+            urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+        
+            fetch(form.action, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: urlEncodedData
+            }).then(response => {
+              window.location.href = 'thanks.html'; // 成功時にthanks.htmlへリダイレクト
+            }).catch(error => {
+              console.error('Error:', error);
+            });
+          });
+        });
+        </script>        
     <iframe
         name="hidden_iframe"
         id="hidden_iframe"
