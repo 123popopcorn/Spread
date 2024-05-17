@@ -294,10 +294,9 @@
   <div class="formbold-main-wrapper">
     <div class="formbold-form-wrapper">
       <form 
-        action="https://docs.google.com/forms/d/e/1FAIpQLSeA2WCo_p8w9huwUXgSE1TYrBWRFzjept4wpDJ8R_Wb3W4x5A/viewform"
+        action="https://script.google.com/macros/s/AKfycbxz68YwRpYKRMIIVcGWUqZfB_K264d2aaPToROy4aBIuHiGEY0zmghvwgALJLs-fUsh0Q/exec"
         method="POST"
-        target="hidden_iframe"
-        onsubmit="submitted=true;"
+        target="_self"
         class="c-form"
       >
         <div class="formbold-form-title">
@@ -308,7 +307,7 @@
           <label for="paypayLink" class="formbold-form-label"> PayPay送金URL <span class="text-danger">*</span></label>
           <input 
             type="url" 
-            name="entry.1396471995" 
+            name="paypayLink" 
             id="paypayLink" 
             class="formbold-form-input" 
             placeholder="例:https://pay.paypay.ne.jp/example" 
@@ -320,7 +319,7 @@
           <label for="email" class="formbold-form-label"> メールアドレス <span class="text-danger">*</span></label>
           <input 
             type="email" 
-            name="entry.975808784" 
+            name="email" 
             id="email" 
             class="formbold-form-input" 
             placeholder="例:email@example.com" 
@@ -333,9 +332,10 @@
             <div class="formbold-relative">
               <input 
                 type="checkbox" 
-                name="entry.456205004" 
+                name="agreement" 
                 id="supportCheckbox" 
                 class="formbold-input-checkbox" 
+                value="同意する" 
                 required 
               >
               <div class="formbold-checkbox-inner">
@@ -349,45 +349,8 @@
             <a href="terms.html" target="_blank">利用規約</a>に同意する
           </label>
         </div>
-        <button class="formbold-btn">購入する</button>
+        <input type="submit" class="formbold-btn" value="購入する">
       </form>
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var form = document.querySelector('form');
-        
-          form.addEventListener('submit', function(e) {
-            e.preventDefault(); // デフォルトのフォーム送信を停止
-        
-            var formData = new FormData(form);
-            var urlEncodedData = "";
-            var urlEncodedDataPairs = [];
-            var name;
-        
-            for(name in formData) {
-              urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(formData[name]));
-            }
-            urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
-        
-            fetch(form.action, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              body: urlEncodedData
-            }).then(response => {
-              window.location.href = 'thanks.html'; // 成功時にthanks.htmlへリダイレクト
-            }).catch(error => {
-              console.error('Error:', error);
-            });
-          });
-        });
-        </script>        
-    <iframe
-        name="hidden_iframe"
-        id="hidden_iframe"
-        style="display: none"
-        onload="if(submitted){window.location='thanks.html';}"
-    ></iframe>
     </div>
   </div>
   <div id="myModal" class="modal">
@@ -450,6 +413,8 @@
       </svg>
     </a>
   </footer>  
+  <script>let submitted = false;</script>
+  <iframe name="hidden_iframe" style="display:none;" onload="if(submitted){window.location='thanks.html';}"></iframe>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script>
