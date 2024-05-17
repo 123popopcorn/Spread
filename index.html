@@ -21,14 +21,6 @@
       height: 100vh;
       flex-direction: column;
     }
-    .svg-container {
-      text-align: center;
-      margin-top: 20px;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
     .formbold-mb-3 {
       margin-bottom: 24px;
     }
@@ -295,24 +287,30 @@
   }
   </style>
   <script type="text/javascript">
-    let submitted = false;
+    document.addEventListener('DOMContentLoaded', function () {
+      let submitted = false;
+
+      document.getElementById('myForm').addEventListener('submit', function () {
+        submitted = true;
+      });
+
+      document.getElementById('hidden_iframe').onload = function () {
+        if (submitted) {
+          window.location = 'thanks.html';
+        }
+      };
+    });
   </script>
-  <iframe
-      name="hidden_iframe"
-      id="hidden_iframe"
-      style="display: none"
-      onload="if(submitted){window.location='thanks.html';}"
-  ></iframe>
 </head>
 <body>
-  <div class="svg-container">
-    <img src="logo3.PNG" height="75">
-  </div>
+  <header style="width: 100%; position: fixed; top: 0; background-color: #1c1f21; padding: 10px 0; text-align: center;">
+    <img src="logo.PNG" alt="Logo" class="custom-logo">
+  </header>  
   <div class="formbold-main-wrapper">
     <div class="formbold-form-wrapper">
       <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeA2WCo_p8w9huwUXgSE1TYrBWRFzjept4wpDJ8R_Wb3W4x5A/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" class="c-form">
         <div class="formbold-form-title">
-          <h2 class="">購入する</h2>
+          <h2 class="">Spread購入フォーム</h2>
           <p>価格 : 5万円</p>
         </div>
         <div class="formbold-mb-3">
@@ -362,6 +360,7 @@
         </div>
         <button class="formbold-btn">購入する</button>
       </form>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
     </div>
   </div>
   <div id="myModal" class="modal">
